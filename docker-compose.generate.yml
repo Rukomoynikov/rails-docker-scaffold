@@ -1,0 +1,13 @@
+# Dedicated file for generation basically will be used once. 
+# And then it's possible to launch app with common docker-compose.yml
+
+services:
+  generate:
+    build:
+      context: ./server
+      dockerfile: "Dockerfile.generate_app"
+    volumes:
+      - "./server/:/app"
+    tmpfs:
+      - /tmp
+      - /app/tmp/pids
