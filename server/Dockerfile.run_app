@@ -4,6 +4,7 @@ WORKDIR /app
 
 ARG ruby_version=2.7.1
 ARG PG_MAJOR=13
+ARG NODE_MAJOR=14
 
 # Installing general packages
 RUN apt update \ 
@@ -17,6 +18,11 @@ RUN apt install rbenv -y \
     && rbenv global $ruby_version \
 	&& eval "$(rbenv init -)" \
 	&& gem install rails
+
+#Installing node and yarn
+RUN curl -sL https://deb.nodesource.com/setup_$NODE_MAJOR.x | bash - \
+	&& apt install nodejs \
+	&& npm i -g yarn
 
 ENV PATH /root/.rbenv/versions/$ruby_version/bin/:/root/.rbenv/shims:$PATH
 
