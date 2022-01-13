@@ -2,28 +2,22 @@
 
 Scaffolding new app in server directory:
 ```
-docker-compose -f docker-compose.generate.yml run --rm generate rails new . -d postgresql
-```
-
-Building image for the app and installing gems
-```
-docker-compose build web
+docker-compose -f docker-compose.generate.yml run --rm generate rails new . -d postgresql -j webpack
 ```
 
 In order to use Postgresql from docker-compose service it's needed to change database credentials:
 ```
-development:
+default: &default
+  ...
   host: postgres
   password: postgres
   user: postgres
-  <<: *default
 ```
 
-And create database:
+Create database:
 ```
 docker-compose run --rm web rails db:prepare
 ```
-
 
 ### Running existing app in "server" directory
 

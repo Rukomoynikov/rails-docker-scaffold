@@ -2,7 +2,7 @@ services:
   web:
     build:
       context: ./server
-      dockerfile: "Dockerfile.run_app"
+      dockerfile: "Dockerfile.web"
     volumes:
       - ./server:/app
       - rails_cache:/app/tmp/cache
@@ -23,8 +23,8 @@ services:
   client:
     build:
       context: ./server
-      dockerfile: "Dockerfile.run_app"
-    command: yarn run build
+      dockerfile: "Dockerfile.client"
+    command: yarn run build -w
     ports:
       - '3035:3035'
     volumes:
