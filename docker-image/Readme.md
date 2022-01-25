@@ -1,20 +1,6 @@
 # Docker image for generating a Rails application
 
-This image can be used to generate a Rails application in current directory.
-```
-docker run --rm -it -v /$(pwd):/app rukomoynikov/rails rails new .
-```
-
-Here is the list installed tools and languages:
-```
-Ruby 2.7.1p83
-Rails 7.0.1
-Node v14.18.3
-Yarn 1.22.17
-```
-
 Dockerfile
-
 ```
 FROM debian:bullseye
 
@@ -45,4 +31,22 @@ RUN curl -sL https://deb.nodesource.com/setup_$NODE_MAJOR.x | bash - \
 ENV PATH /root/.rbenv/versions/$ruby_version/bin/:/root/.rbenv/shims:$PATH
 
 RUN gem install rails
+```
+
+Here is the list installed tools and languages:
+```
+Ruby 2.7.1p83
+Rails 7.0.1
+Node v14.18.3
+Yarn 1.22.17
+```
+
+Generating new rails application can be done with this command
+```
+docker run --rm -v /$(pwd):/app rukomoynikov/rails rails new .
+```
+
+And running this app is easy like
+```
+docker run --rm -it -p 3000:3000 -v /$(pwd):/app rukomoynikov/rails rails s -b 0.0.0.0
 ```
