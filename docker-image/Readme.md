@@ -50,3 +50,8 @@ And running this app is easy like
 ```
 docker run --rm -it -p 3000:3000 -v /$(pwd):/app rukomoynikov/rails rails s -b 0.0.0.0
 ```
+
+Building new images for Docker Hub
+```
+docker build . -t rukomoynikov/rails -t rukomoynikov/rails:2.7.1
+```
